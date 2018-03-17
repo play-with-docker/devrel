@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('LoginCtrl', function($scope, $location, pwdService) {
+  .controller('LoginCtrl', function($scope, $location, pwdService, $stateParams, $window) {
 
 
     pwdService.assignSession()

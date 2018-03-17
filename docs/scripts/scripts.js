@@ -24,7 +24,7 @@ angular
     $stateProvider
       .state('base', {
         abstract: true,
-        url: '',
+        url: '?aliId',
         templateUrl: 'views/base.html'
       })
         .state('login', {
@@ -134,6 +134,8 @@ angular.module('yapp')
             $scope.ucpHost = instance.proxy_host + '.direct.' + session.hostname;
           } else if (instance.hostname == "worker1") {
             $scope.dtrHost = instance.proxy_host + '.direct.' + session.hostname;
+          } else if (instance.type == "windows") {
+            $scope.winHost = instance.proxy_host + '.direct.' + session.hostname;
           }
           $scope.instances.push(instance);
         }
@@ -182,7 +184,7 @@ angular.module('yapp')
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('LoginCtrl', ["$scope", "$location", "pwdService", function($scope, $location, pwdService) {
+  .controller('LoginCtrl', ["$scope", "$location", "pwdService", "$stateParams", "$window", function($scope, $location, pwdService, $stateParams, $window) {
 
 
     pwdService.assignSession()
